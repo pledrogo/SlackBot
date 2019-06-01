@@ -1,0 +1,7 @@
+flask
+gunicorn
+httplib2
+oauth2client
+google_api_python_client
+requests
+slackclient
