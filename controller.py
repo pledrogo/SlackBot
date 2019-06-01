@@ -1,7 +1,7 @@
 import os
 import logging
 from services.gsheet_queries import gsheet_query
-from services.slack_queries import send_slack_message
+
 
 def kalenzabot(role, text):
     logging.basicConfig()
@@ -42,7 +42,7 @@ def kalenzabot(role, text):
         elif 'kalenzadmin' in text:
             bot = bot = dict(username='', icon_url='',
                              text='https://docs.google.com/spreadsheets/d/1bAklhnyrJr_jzGPeuaQtIMm8FopQ0qL1xqARsd8j_nI/edit#gid=394572790')
-        else
+        else:
             gsheetid = os.environ.get('GSHEET_SENTENCES_DE_SPREADSHEET_ID','n/a')
             bot = query_sentences("kalenzabot", text, gsheetid)
     else:

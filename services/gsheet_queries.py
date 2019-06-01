@@ -2,8 +2,6 @@ import os
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
-import requests
-import json
 
 
 def gsheet_query(sid, rangeName, query):
