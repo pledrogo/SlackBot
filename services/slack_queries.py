@@ -1,4 +1,5 @@
 import os
+from slackclient import SlackClient
 
 def send(channel, text, username, icon_url):
     webhook_url = 'https://slack.com/api/chat.postMessage'

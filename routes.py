@@ -4,12 +4,13 @@ import logging
 import security
 import controller
 from flask import Response
+from flask import request
 from urllib.parse import parse_qs
 
 from services import slack_queries as slack
 
 application = Flask(__name__)
-url_prefix = os.environ.get('URL_PREFIX','/Z3AELDdzzE09KLk210jNbcDuY8jnd0823x42zARkdQCVx0Lm')
+url_prefix = os.environ.get('URL_PREFIX','/dev')
 
 
 @application.route(url_prefix+'/kalenzabot/', methods=['POST'])

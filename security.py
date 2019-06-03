@@ -4,6 +4,7 @@ def verify_slack_tocken(token):
     result = False
     if token == os.environ.get('SLACK_REQUEST_TOKEN', 'N/A'):
         result = True
+
     return result
 
 
