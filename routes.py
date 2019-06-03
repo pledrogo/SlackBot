@@ -9,7 +9,7 @@ from urllib.parse import parse_qs
 from services import slack_queries as slack
 
 application = Flask(__name__)
-url_prefix = '/Z3AELDdzzE09KLk210jNbcDuY8jnd0823x42zARkdQCVx0Lm'
+url_prefix = os.environ.get('URL_PREFIX','/Z3AELDdzzE09KLk210jNbcDuY8jnd0823x42zARkdQCVx0Lm')
 
 
 @application.route(url_prefix+'/kalenzabot/', methods=['POST'])

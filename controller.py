@@ -1,6 +1,6 @@
 import os
 import logging
-from services.gsheet_queries import gsheet_query
+from services import gsheet_queries as gsheet
 
 
 def kalenzabot(role, text):
@@ -29,22 +29,22 @@ def kalenzabot(role, text):
                 botname = m.group(1)
                 if m.group(2) is not None:
                     query = m.group(2)
-                bot = query_sentences(botname, query, gsheetid)
+                bot = query_sentences(gsheetid, botname, query)
             else:
                 bot = dict(username='', icon_url='', text=text + ": didnt get it...")
     elif role in 'de':
         if 'support' in text:
             bot = query_support(text)
         elif '--help' in text:
-            bot = bot = dict(username='', icon_url='',
+            bot = dict(username='', icon_url='',
                              text="kalenzadmin: get link to bot definition\nsupport: get this week DE support guys\nsupport next week: get next week DE support guys")
 
         elif 'kalenzadmin' in text:
-            bot = bot = dict(username='', icon_url='',
+            bot = dict(username='', icon_url='',
                              text='https://docs.google.com/spreadsheets/d/1bAklhnyrJr_jzGPeuaQtIMm8FopQ0qL1xqARsd8j_nI/edit#gid=394572790')
         else:
             gsheetid = os.environ.get('GSHEET_SENTENCES_DE_SPREADSHEET_ID','n/a')
-            bot = query_sentences("kalenzabot", text, gsheetid)
+            bot = query_sentences(gsheetid, "kalenzabot", text)
     else:
         bot = query_support(text)
 
@@ -61,7 +61,8 @@ def query_support(text):
 
     gsheetid = os.environ.get('GSHEET_SUPPORT_SPREADSHEET_ID','N/A')
     gsheetrange = os.environ.get('GSHEET_SUPPORT_RANGE_NAME','N/A')
-    support = gsheet_query(gsheetid, gsheetrange, '')
+
+    support = gsheet.query(gsheetid, gsheetrange, '')
     res = ""
     weekNumber = date.today().isocalendar()[1]
     thisweek = "Cette semaine"
@@ -105,7 +106,7 @@ def query_support(text):
     return bot
 
 
-def query_sentences(tabid, text, gsheetid):
+def query_sentences(gsheetid, tabid, text):
     logging.basicConfig()
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -116,7 +117,7 @@ def query_sentences(tabid, text, gsheetid):
     ###
 
     res = ''
-    parts = gsheet_query(gsheetid, tabid + '!A1:A102', '')
+    parts = gsheet.query(gsheetid, tabid + '!A1:A102', '')
 
     bot['username'] = parts[0][0]
     bot['icon_url'] = parts[1][0]

@@ -2,6 +2,7 @@ flask
 gunicorn
 httplib2
 oauth2client
+gspread
 google_api_python_client
 requests
 slackclient
