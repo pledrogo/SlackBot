@@ -14,6 +14,8 @@ def query(sid, rangeName, query):
     json_creds = os.environ.get('GSHEET_CREDS', 'N/A')
 
     logger.info(json_creds)
+    logger.info(sid)
+    logger.info(rangeName)
     creds_dict = json.loads(json_creds)
     #logger.info("private key before :{}".format(creds_dict["private_key"]))
     creds_dict["private_key"] = creds_dict["private_key"].replace("\\\\n", "\n")
