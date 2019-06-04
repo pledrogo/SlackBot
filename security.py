@@ -1,4 +1,5 @@
 import os
+import json
 
 def verify_slack_tocken(token):
     result = False
@@ -10,9 +11,9 @@ def verify_slack_tocken(token):
 
 def getrole(channel):
     role = 'none'
-    if channel in ['G060NTEDN', 'GDZRVNS8Y']:
-        role = 'manager'
-    elif channel in ['GBEC535K7', 'G14SAGW9W', 'C6EUPLBDM', 'GDZRVNS8Y', 'GE9EENXSP', 'GAHCZ11GU']:
-        role = 'de'
+    accesslist = json.loads(os.environ.get('SECURITY_ROLES', 'N/A'))
+
+    if channel in accesslist:
+        role = accesslist[channel]
 
     return role

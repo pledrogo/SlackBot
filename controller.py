@@ -20,10 +20,10 @@ def kalenzabot(role, text):
             bot = query_support(text)
         elif '--admin' in text:
             bot = dict(username='', icon_url='',
-                             text='https://docs.google.com/spreadsheets/d/1fRTA4BNmNuWZY-4sn_MMqyyrTO8tDdJB3yws3_CyjA8/edit#gid=200993932')
+                             text = os.environ.get('GSHEET_MGR_LINK','n/a'))
         elif '--help' in text:
             bot = dict(username='', icon_url='',
-                             text="--admin: get link to bot definition \n--bot=(botname): call your bot\nsupport: get this week DE support guys\nsupport next week: get next week DE support guys")
+                             text= os.environ.get('HELP_MGR_TEXT','n/a'))
         else:
             gsheetid = os.environ.get('GSHEET_SENTENCES_MGR_SPREADSHEET_ID','n/a')
             m = re.search(r"--bot=(\w+)( .*)*", text)
@@ -35,16 +35,16 @@ def kalenzabot(role, text):
                 bot = query_sentences(gsheetid, botname, query)
             else:
                 bot = dict(username='', icon_url='', text=text + ": didnt get it...")
+
     elif role in 'de':
         if 'support' in text:
             bot = query_support(text)
         elif '--help' in text:
             bot = dict(username='', icon_url='',
-                             text="kalenzadmin: get link to bot definition\nsupport: get this week DE support guys\nsupport next week: get next week DE support guys")
-
+                       text=os.environ.get('HELP_MGR_TEXT', 'n/a'))
         elif 'kalenzadmin' in text:
             bot = dict(username='', icon_url='',
-                             text='https://docs.google.com/spreadsheets/d/1bAklhnyrJr_jzGPeuaQtIMm8FopQ0qL1xqARsd8j_nI/edit#gid=394572790')
+                             text=os.environ.get('GSHEET_MGR_LINK','n/a'))
         else:
             gsheetid = os.environ.get('GSHEET_SENTENCES_DE_SPREADSHEET_ID','n/a')
             bot = query_sentences(gsheetid, "kalenzabot", text)
@@ -99,12 +99,11 @@ def query_support(text):
         if robin and batman:
             break
     if not batman:
-        batman = "...personne???"
+        batman = "...personne et c'est *pas normal*..."
     if not robin:
-        robin = "...ah ben c'est personne"
+        robin = "...a sorti son JOKER"
 
-    bot[
-        'text'] = thisweek + ", :batman: c'est *" + batman + "*, et :robin-batman: c'est *" + robin + "*.\nEt le planning est <https://docs.google.com/spreadsheets/d/e/2PACX-1vT1uTypt-DUpIX4V8zr32w1nesf8YkH7PEOfAJIjlBEh4hz_NWvMfxmAQU1lmJLgV8OHRerBnN3rklX/pubhtml?gid=1740738294&single=true|ICI>"
+    bot['text'] = os.environ.get('SUPPORT_FORMAT_TXT','n/a').format(thisweek, batman, robin)
 
     return bot
 
