@@ -1,5 +1,6 @@
 import os
 import logging
+import random
 from datetime import date
 from services import gsheet_queries as gsheet
 
