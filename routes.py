@@ -48,7 +48,7 @@ def kalenzabot():
 
     async_msg = slack.send(channel, response['text'], response['username'], response['icon_url'])
 
-    logger.info("async status:{}".format(asyncMsg))
+    logger.info("async status:{}".format(async_msg))
 
     if (async_msg):
         syncMsg = Response()
