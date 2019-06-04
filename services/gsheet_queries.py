@@ -13,7 +13,7 @@ def query(sid, rangeName, query):
     scopes = ['https://spreadsheets.google.com/feeds']
     json_creds = os.environ.get('GSHEET_CREDS', 'N/A')
 
-    logger.info(json_creds)
+    #logger.info(json_creds)
     logger.info(sid)
     logger.info(rangeName)
     creds_dict = json.loads(json_creds)
