@@ -41,6 +41,7 @@ def kalenzabot():
 
     if security.verify_slack_tocken(token):
         role = security.getrole(channel)
+        logger.info('channel={}, role={}'.format(channel,role))
         response = controller.kalenzabot(role, text)
         logger.info("response:{}".format(response))
     else:
