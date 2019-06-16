@@ -6,3 +6,4 @@ gspread
 google_api_python_client
 requests
 slackclient==1.3.2
+pytest

@@ -1,5 +1,20 @@
 import os
 import json
+import logging
+
+
+def auth_by_token(f):
+    def wrapper(x):
+        logging.basicConfig()
+        logger = logging.getLogger()
+        logger.setLevel(logging.INFO)
+        logger.info("token verification:{}".format(x.token))
+        if not verify_slack_tocken(x.token):
+            raise Exception("not allowed")
+        else:
+            return f(x)
+    return wrapper
+
 
 def verify_slack_tocken(token):
     result = False
@@ -9,8 +24,10 @@ def verify_slack_tocken(token):
     return result
 
 
-def getrole(channel):
-    role = 'none'
+def get_role(channel):
+
+    role = "NONE"
+
     accesslist = json.loads(os.environ.get('SECURITY_ROLES', 'N/A'))
 
     if channel in accesslist:

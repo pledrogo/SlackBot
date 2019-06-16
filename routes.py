@@ -1,13 +1,12 @@
 from flask import Flask
 import os
 import logging
-import security
+import json
 import controller
+import CommandRouter
 from flask import Response
 from flask import request
-from urllib.parse import parse_qs
 
-from services import slack_queries as slack
 
 application = Flask(__name__)
 url_prefix = os.environ.get('URL_PREFIX','/dev')
@@ -15,52 +14,32 @@ url_prefix = os.environ.get('URL_PREFIX','/dev')
 
 @application.route(url_prefix+'/kalenzabot/', methods=['POST'])
 def kalenzabot():
+    bc = read_request()
+    sync_response_text = controller.kalenzabot(bc)
+    return build_response(sync_response_text)
 
+
+@application.route(url_prefix+'/de/', methods=['POST'])
+def de():
+    bc = read_request()
+    sync_response_text = controller.de(bc)
+    return build_response(sync_response_text)
+
+
+def read_request():
     body = request.get_data().decode('utf8')
-    text = ' '
-    token = ''
-    channel = ''
+    cr = CommandRouter(body)
+    bc = cr.route_command()
+    return bc
 
-    logging.basicConfig()
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
 
-    logger.info("body:{}".format(body))
-    print("body:{}".format(body))
-
-    payload = parse_qs(body)
-    logger.info("payload:{}".format(payload))
-
-    print(payload.keys())
-    if 'text' in payload.keys():
-        text = payload['text'][0]
-    if 'token' in payload.keys():
-        token = payload['token'][0]
-    if 'channel_id' in payload.keys():
-        channel = payload['channel_id'][0]
-
-    if security.verify_slack_tocken(token):
-        role = security.getrole(channel)
-        logger.info('channel={}, role={}'.format(channel,role))
-        response = controller.kalenzabot(role, text)
-        logger.info("response:{}".format(response))
+def build_response(sync_response_text):
+    if sync_response_text is None:
+        r = Response()
     else:
-        return "not allowed"
-
-    async_msg = slack.send(channel, response['text'], response['username'], response['icon_url'])
-
-    logger.info("async status:{}".format(async_msg))
-
-    if (async_msg):
-        syncMsg = Response()
-    else:
-        syncMsg = Response(
-            json.dumps({'response_type': 'in_channel', 'text': response['text']}, ensure_ascii=False),
-            content_type="application/json")
-
-    logger.info("sync msg:{}".format(syncMsg))
-
-    return syncMsg
+        r = Response(json.dumps({'response_type': 'in_channel', 'text': sync_response_text}, ensure_ascii=False),
+                     content_type="application/json")
+    return r
 
 
 @application.route(url_prefix+'/test/', methods=['POST'])
