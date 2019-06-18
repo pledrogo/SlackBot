@@ -3,7 +3,7 @@ import os
 import logging
 import json
 import controller
-import CommandRouter
+from CommandRouter import CommandRouter
 from flask import Response
 from flask import request
 
