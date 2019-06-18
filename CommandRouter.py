@@ -1,10 +1,10 @@
 import logging
 from urllib.parse import parse_qs
 
-from SlackBot.BotCommands.AdminBotCommand import AdminBotCommand
-from SlackBot.BotCommands.HelpBotCommand import HelpBotCommand
-from SlackBot.BotCommands.SupportBotCommand import SupportBotCommand
-from SlackBot.BotCommands.SentenceBotCommand import SentenceBotCommand
+from BotCommands.AdminBotCommand import AdminBotCommand
+from BotCommands.HelpBotCommand import HelpBotCommand
+from BotCommands.SupportBotCommand import SupportBotCommand
+from BotCommands.SentenceBotCommand import SentenceBotCommand
 
 class CommandRouter:
 

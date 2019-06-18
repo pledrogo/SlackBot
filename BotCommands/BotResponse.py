@@ -1,6 +1,6 @@
 import os
 import logging
-from SlackBot.services import slack_queries as slack
+from services import slack_queries as slack
 
 class BotResponse:
 

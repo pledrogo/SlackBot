@@ -1,9 +1,9 @@
 import logging
 
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-from SlackBot.security import get_role
-from SlackBot.security import auth_by_token
+from BotCommands.ABotCommand import ABotCommand
+from BotCommands.ABotCommand import BotRole
+from security import get_role
+from security import auth_by_token
 
 
 @auth_by_token

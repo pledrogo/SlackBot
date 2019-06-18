@@ -1,6 +1,6 @@
 import os
 import logging
-from SlackBot.BotCommands.BotResponse import BotResponse
+from BotCommands.BotResponse import BotResponse
 
 
 

@@ -2,10 +2,10 @@ import os
 import logging
 import re
 import random
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-from SlackBot.BotCommands.ABotCommand import BotResponse
-from SlackBot.services import gsheet_queries as gsheet
+from BotCommands.ABotCommand import ABotCommand
+from BotCommands.ABotCommand import BotRole
+from BotCommands.ABotCommand import BotResponse
+from services import gsheet_queries as gsheet
 
 
 class SentenceBotCommand (ABotCommand):

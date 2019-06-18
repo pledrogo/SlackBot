@@ -1,10 +1,10 @@
 import os
 import logging
 from datetime import date
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-from SlackBot.BotCommands.ABotCommand import BotResponse
-from SlackBot.services import gsheet_queries as gsheet
+from BotCommands.ABotCommand import ABotCommand
+from BotCommands.ABotCommand import BotRole
+from BotCommands.BotResponse import BotResponse
+from services import gsheet_queries as gsheet
 
 class SupportBotCommand (ABotCommand):
 

@@ -1,13 +1,12 @@
-import sys
-sys.path.append('../')
 import pytest
 
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-from SlackBot.BotCommands.AdminBotCommand import AdminBotCommand
-from SlackBot.BotCommands.HelpBotCommand import HelpBotCommand
-from SlackBot.BotCommands.SupportBotCommand import SupportBotCommand
-from SlackBot.BotCommands.SentenceBotCommand import SentenceBotCommand
+
+from ABotCommand import ABotCommand
+from ABotCommand import BotRole
+from AdminBotCommand import AdminBotCommand
+from HelpBotCommand import HelpBotCommand
+from SupportBotCommand import SupportBotCommand
+from SentenceBotCommand import SentenceBotCommand
 
 
 

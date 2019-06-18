@@ -1,16 +1,14 @@
-import sys
-sys.path.append('../')
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-
-from SlackBot.BotCommands.AdminBotCommand import AdminBotCommand
-from SlackBot.BotCommands.HelpBotCommand import HelpBotCommand
-from SlackBot.BotCommands.SupportBotCommand import SupportBotCommand
-from SlackBot.BotCommands.SentenceBotCommand import SentenceBotCommand
-from SlackBot.security import auth_by_token
 import os
 
-from SlackBot import controller as module
+from BotCommands.ABotCommand import ABotCommand
+from BotCommands.ABotCommand import BotRole
+
+from BotCommands.AdminBotCommand import AdminBotCommand
+from BotCommands.HelpBotCommand import HelpBotCommand
+from BotCommands.SupportBotCommand import SupportBotCommand
+from BotCommands.SentenceBotCommand import SentenceBotCommand
+from security import auth_by_token
+import controller as module
 
 
 

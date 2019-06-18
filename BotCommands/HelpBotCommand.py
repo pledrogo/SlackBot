@@ -1,9 +1,9 @@
 import os
 import logging
 
-from SlackBot.BotCommands.ABotCommand import ABotCommand
-from SlackBot.BotCommands.ABotCommand import BotRole
-from SlackBot.BotCommands.ABotCommand import BotResponse
+from BotCommands.ABotCommand import ABotCommand
+from BotCommands.ABotCommand import BotRole
+from BotCommands.BotResponse import BotResponse
 
 class HelpBotCommand (ABotCommand):
 
