@@ -38,6 +38,8 @@ def test_route_1():
     bc = cr.route_command()
 
     assert type(bc) is SupportBotCommand
+    assert bc.channel == cr.channel
+    assert bc.token == bc.token
 
 
 

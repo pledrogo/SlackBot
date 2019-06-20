@@ -58,4 +58,8 @@ class CommandRouter:
         else:
             pc = SentenceBotCommand(self.text)
 
+
+        pc.token = self.token
+        pc.channel = self.channel
+
         return pc
