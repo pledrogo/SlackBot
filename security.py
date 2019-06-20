@@ -8,6 +8,7 @@ def auth_by_token(f):
         logging.basicConfig()
         logger = logging.getLogger()
         logger.setLevel(logging.INFO)
+        print(x)
         logger.info("token verification:{}".format(x.token))
         if not verify_slack_tocken(x.token):
             raise Exception("not allowed")
