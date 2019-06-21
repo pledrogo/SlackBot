@@ -24,8 +24,9 @@ def execute(botCommand, role):
     logger.setLevel(logging.INFO)
     no_sync_msg = True
 
+    logger.info("role:{}".format(role))
     response = botCommand.execute(role)
-    logger.info("response:{}".format(response))
+    logger.info("response:{}".format(response.text))
 
     if response.text is not None:
         no_sync_msg = response.send(botCommand.channel)

@@ -71,15 +71,17 @@ class SentenceBotCommand (ABotCommand):
     def apply_authorisations(self,role):
 
         if role == BotRole.MANAGERS:
+            print('BotRole.MANAGERS')
             self.gsheet_id = os.environ.get('GSHEET_SENTENCES_MGR_SPREADSHEET_ID', 'n/a')
             self.gsheet_tab_id = self.bot_name
 
         elif role == BotRole.DE:
+            print('BotRole.DE')
             self.gsheet_id = os.environ.get('GSHEET_SENTENCES_DE_SPREADSHEET_ID', 'n/a')
             self.gsheet_tab_id = "kalenzabot"
 
         else:
-            pass
+            print('BotRole:else')
 
 
 
