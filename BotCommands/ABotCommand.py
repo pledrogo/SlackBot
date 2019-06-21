@@ -5,9 +5,9 @@ from BotCommands.BotResponse import BotResponse
 
 
 class BotRole:
-    NONE="NONE",
-    DE="DE",
-    MANAGERS="MANAGERS",
+    NONE="NONE"
+    DE="DE"
+    MANAGERS="MANAGERS"
     ALL="ALL"
 
 class ABotCommand:

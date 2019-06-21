@@ -40,3 +40,7 @@ def test_sentencecommand_2():
     bc = SentenceBotCommand()
     br = bc.execute(BotRole.DE)
     assert br.username == "christophe.kalenzabot"
+
+
+def test_botrole():
+    assert BotRole.MANAGERS == "MANAGERS"
